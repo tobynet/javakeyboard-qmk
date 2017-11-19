@@ -22,6 +22,7 @@ enum custom_keycodes {
 };
 
 #define KC_ KC_TRNS
+#define KC_XXXX KC_TRNS   // Need Trans
 #define _______ KC_TRNS
 
 #define KC_CAPW LGUI(LSFT(KC_3))        // Capture whole screen
@@ -32,6 +33,12 @@ enum custom_keycodes {
 // WARNING: Use `_LOWER` in `LT` macro, not `LOWER`. if you make mistake, hungup your keyboards.
 #define KC_F_MU LT(_LOWER, KC_MHEN)
 #define KC_F_HE LT(_RAISE, KC_HENK)
+#define KC__S LT(_LOWER, KC_S)
+#define KC__D LT(_LOWER, KC_D)
+#define KC__F LT(_LOWER, KC_F)
+#define KC__J LT(_RAISE, KC_J)
+#define KC__K LT(_RAISE, KC_K)
+#define KC__L LT(_RAISE, KC_L)
 
 #define KC_X3 LT(_FN3, KC_ZKHK)
 #define KC_Fn LT(_Fn, KC_ZKHK)
@@ -51,26 +58,13 @@ enum custom_keycodes {
 #define KC_RST RESET
 
 // JP for KC_KEYMAP
-#define KC_CART KC_EQL  // ^, ~
-#define KC_JP_AT KC_EQL  // ^, ~
+#define KC_J_CRT KC_EQL         // ^, ~
+#define KC_J_YEN KC_INT3       // yen, |
 
-
-#ifdef TAP_DANCE_ENABLE
-/* Tap Dancery */
-enum
-{
-  TD_U,
-  TD_UP,
-};
-#define KC__U TD(TD_U)
-#define KC__UP TD(TD_UP)
-
-#else
-
-#define KC__U KC_U
-#define KC__UP KC_UP
-
-#endif // TAP_DANCE_ENABLE
+#define KC_J_AT KC_LBRC        // @, `
+#define KC_J_LBR KC_RBRC       // [, {
+#define KC_J_CLN KC_QUOT       // :, *
+#define KC_J_RBR KC_NUHS       // ], }
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -78,13 +72,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // "Q" means "KC_Q"
   [_QWERTY] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-     TAB , Q  , W  , E  , R  , T  ,      Y  , _U , I  , O  , P  ,MINS,
+     TAB , Q  , W  , E  , R  , T  ,      Y  ,  U , I  , O  , P  ,MINS,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     LCTL, A  , S  , D  , F  , G  ,      H  , J  , K  , L  ,SCLN,QUOT,
+     LCTL, A  , _S , _D , _F , G  ,      H  , _J , _K , _L ,SCLN,J_CLN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,_UP, RO ,
+     LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn , X3 ,LGUI,LALT,F_MU,SPC ,     BSPC,F_HE,ENT ,LEFT,DOWN,RGHT
+      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,LEFT,DOWN, UP ,RGHT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -92,29 +86,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
      ESC , 1  , 2  , 3  , 4  , 5  ,      6  , 7  , 8  , 9  , 0  ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,     ,   ,PLUS,PIPE,
+         ,    ,XXXX,XXXX,XXXX,    ,     LEFT,DOWN, UP ,RGHT,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,PGUP, RO ,
+         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     DEL ,    ,    ,HOME,PGDN,END
+         ,    ,    ,    ,    ,    ,     DEL ,    ,HOME,PGDN,PGUP,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
   [_RAISE] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-     ESC ,EXLM, AT ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,MINS,CART,
+     ESC ,EXLM, AT ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,J_CRT,J_YEN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     DEL ,    ,    ,VOLU,    ,    ,         ,    ,     ,   ,    ,BSLS,
+         ,    ,    ,    ,    ,    ,         ,XXXX,XXXX,XXXX,J_AT,J_LBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,VOLD,    ,    ,         ,    ,    ,    ,SLSH, RO ,
+         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,SLSH,J_RBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,     DEL ,    ,    ,    ,    ,
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
+  // Sandbox layer
   [_FN3] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-         , W1 , W2 ,    ,    ,    ,    ,    ,         ,    ,    ,    ,
+         ,    ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
@@ -128,11 +123,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
      F12 , F1 , F2 , F3 , F4 , F5 ,      F6 , F7 , F8 , F9 ,F10 ,F11 ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0, RBRC,
+         , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0,     ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,PGUP,NUHS,
+         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     RST ,    ,    ,HOME,PGDN,END
+         ,    ,    ,    ,    ,    ,     RST ,    ,    ,    ,    ,
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 

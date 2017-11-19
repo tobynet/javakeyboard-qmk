@@ -31,7 +31,7 @@ enum custom_keycodes {
 
 // WARNING: Use `_LOWER` in `LT` macro, not `LOWER`. if you make mistake, hungup your keyboards.
 #define KC_F_MU LT(_LOWER, KC_MHEN)
-#define KC_F_HE LT(_RAISE, KC_ZKHK)
+#define KC_F_HE LT(_RAISE, KC_HENK)
 
 #define KC_X3 LT(_FN3, KC_ZKHK)
 #define KC_Fn LT(_Fn, KC_ZKHK)

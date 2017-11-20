@@ -79,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // "Q" means "KC_Q"
   [_QWERTY] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-     TAB , Q  , W  , E  , R  , T  ,      Y  ,  U , I  , O  , P  ,MINS,
+     TAB , Q  , W  , E  , R  , T  ,      Y  ,  U , I  , O  ,SCLN,MINS,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     LCTL, A  , _S , _D , _F , G  ,      H  , _J , _K , _L ,SCLN,J_CLN,
+     LCTL, A  , _S , _D , _F , G  ,      H  , _J , _K , _L , P  ,J_CLN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|

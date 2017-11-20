@@ -72,6 +72,9 @@ enum custom_keycodes {
 #define KC_J_LBR KC_RBRC       // [, {
 #define KC_J_CLN KC_QUOT       // :, *
 #define KC_J_RBR KC_NUHS       // ], }
+#define KC_J_LBC LSFT(JP_LBRC) // {
+#define KC_J_RBC LSFT(JP_RBRC) // }
+#define KC_J_DQ LSFT(KC_2)     // "
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -81,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
      TAB , Q  , W  , E  , R  , T  ,      Y  ,  U , I  , O  ,SCLN,MINS,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     LCTL, A  , _S , _D , _F , G  ,      H  , _J , _K , _L , P  ,J_CLN,
+     LCTL, A  , _S , _D , _F , G  ,      H  , _J , K , L , P  ,J_CLN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,    ,    ,    ,
+      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,LEFT,DOWN, UP ,RGHT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -95,19 +98,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,XXXX,XXXX,XXXX,    ,     LEFT,DOWN, UP ,RGHT,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
+         ,    ,    ,    ,    ,    ,         ,    ,    ,    , UP ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     DEL ,SENT,HOME,PGDN,PGUP,END
+         ,    ,    ,    ,    ,    ,     DEL ,SENT,    ,LEFT,DOWN,RGHT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
   [_RAISE] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-     ESC ,EXLM, AT ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,J_CRT,J_YEN,
+     ESC ,EXLM,J_DQ,HASH,DLR ,PERC,     CIRC,AMPR,ASTR,LPRN,J_CRT,J_YEN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,XXXX,XXXX,XXXX,J_AT,J_LBR,
+         ,EXLM,J_DQ,HASH,DLR ,PERC,         ,XXXX,J_LBR,J_RBR,J_AT,J_LBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,    ,    , UP ,J_RBR,
+         ,    ,    ,    ,    ,    ,         ,    ,J_LBC,J_RBC,UP,J_RBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,     DEL ,SENT,    ,LEFT,DOWN,RGHT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'

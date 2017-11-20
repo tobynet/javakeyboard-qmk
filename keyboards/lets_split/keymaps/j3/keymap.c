@@ -1,5 +1,6 @@
 #include "lets_split.h"
 #include "action_layer.h"
+#include "version.h"
 #include "eeconfig.h"
 #include "keymap_jp.h"
 
@@ -19,6 +20,10 @@ enum custom_keycodes {
   FN3,
   FN,
   ADJUST,
+
+  // Custom macros
+  SEMICOLON_ENTER,
+  VERSION,
 };
 
 #define KC_ KC_TRNS
@@ -54,6 +59,8 @@ enum custom_keycodes {
 #define KC_W9 LGUI(KC_9)  // Change window to 9th
 #define KC_W0 LGUI(KC_0)  // Change window to 10th
 
+#define KC_SENT SEMICOLON_ENTER   // ; -> Enter
+#define KC_VRSN VERSION           // Show firmware version
 
 #define KC_RST RESET
 
@@ -90,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     DEL ,    ,HOME,PGDN,PGUP,END
+         ,    ,    ,    ,    ,    ,     DEL ,SENT,HOME,PGDN,PGUP,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -102,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    ,SLSH,J_RBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     DEL ,    ,    ,    ,    ,
+         ,    ,    ,    ,    ,    ,     DEL ,SENT,    ,    ,    ,
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -127,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,     RST ,    ,    ,    ,    ,
+         ,    ,    ,    ,    ,    ,     RST ,VRSN,    ,    ,    ,
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -187,6 +194,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_ADJUST);
       } else {
         layer_off(_ADJUST);
+      }
+      return false;
+      break;
+
+    // ; + Enter
+    case SEMICOLON_ENTER:
+      if (record->event.pressed) {
+        SEND_STRING (SS_TAP(X_SCOLON) SS_TAP(X_ENTER));
+      }
+      return false;
+      break;
+
+    // Show version
+    case VERSION:
+      if (record->event.pressed) {
+        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
       }
       return false;
       break;

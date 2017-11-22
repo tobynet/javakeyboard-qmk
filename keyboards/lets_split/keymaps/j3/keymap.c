@@ -44,6 +44,9 @@ enum custom_keycodes {
 #define KC__J LT(_RAISE, KC_J)
 #define KC__K LT(_RAISE, KC_K)
 #define KC__L LT(_RAISE, KC_L)
+#define KC__LFT LT(_RAISE, KC_LEFT)
+#define KC__RGT LT(_RAISE, KC_RIGHT)
+#define KC__DWN LT(_RAISE, KC_DOWN)
 
 #define KC_X3 LT(_FN3, KC_ZKHK)
 #define KC_Fn LT(_Fn, KC_ZKHK)
@@ -88,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,LEFT,DOWN, UP ,RGHT
+      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,    ,_LFT,_DWN,_RGT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -100,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    , UP ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,SENT,    ,LEFT,DOWN,RGHT
+         ,    ,    ,    ,    ,    ,         ,SENT,    ,XXXX,XXXX,XXXX
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -112,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,J_LBC,J_RBC,UP,J_RBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,SENT,    ,LEFT,DOWN,RGHT
+         ,    ,    ,    ,    ,    ,         ,SENT,    ,XXXX,XXXX,XXXX
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 

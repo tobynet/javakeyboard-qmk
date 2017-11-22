@@ -36,8 +36,8 @@ enum custom_keycodes {
 #define KC_CPYP LGUI(LSFT(LCTL(KC_4)))  // Copy portion of screen
 
 // WARNING: Use `_LOWER` in `LT` macro, not `LOWER`. if you make mistake, hungup your keyboards.
-#define KC_F_MU LT(_LOWER, KC_MHEN)
-#define KC_F_HE LT(_RAISE, KC_HENK)
+#define KC_F_MU LT(_FN3, KC_MHEN)
+#define KC_F_HE LT(_FN3, KC_HENK)
 #define KC__S LT(_LOWER, KC_S)
 #define KC__D LT(_LOWER, KC_D)
 #define KC__F LT(_LOWER, KC_F)
@@ -91,9 +91,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn , X3 ,LGUI,LALT,ZKHK,SPC ,     BSPC,ENT ,    ,_LFT,_DWN,_RGT
+      Fn , X3 ,LGUI,LALT,F_MU,SPC ,     BSPC,F_HE,ENT ,_LFT,_DWN,_RGT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
+
 
   [_LOWER] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
@@ -103,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    , UP ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,SENT,    ,XXXX,XXXX,XXXX
+         ,    ,    ,    ,    ,    ,         ,    ,SENT,XXXX,XXXX,XXXX
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -115,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,J_LBC,J_RBC,UP,J_RBR,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,SENT,    ,XXXX,XXXX,XXXX
+         ,    ,    ,    ,    ,    ,         ,    ,SENT,XXXX,XXXX,XXXX
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 

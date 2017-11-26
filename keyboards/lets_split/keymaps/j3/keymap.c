@@ -92,14 +92,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn ,FN3 ,LGUI,LALT,F_MU,SPC ,     F_HE,ENT ,FN3 ,_LFT,DOWN,_RGT
+      Fn ,FN3 ,LGUI,LALT,F_MU,SPC ,     BSPC,ENT ,F_HE,LEFT,DOWN,RGHT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
 
   [_LOWER] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-     ESC , 1  , 2  , 3  , 4  , 5  ,      6  , 7  , 8  , 9  , 0  ,BSPC,
+     ESC , 1  , 2  , 3  , 4  , 5  ,      6  , 7  , 8  , 9  , 0  ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,XXXX,XXXX,XXXX,    ,     LEFT,DOWN, UP ,RGHT,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Sandbox layer
   [_FN3] = KC_KEYMAP(
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
-         , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,BSPC,
+         , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
@@ -202,6 +202,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_ADJUST);
       } else {
         layer_off(_ADJUST);
+      }
+      return false;
+      break;
+
+    case FN3:
+      if (record->event.pressed) {
+        layer_on(_FN3);
+      } else {
+        layer_off(_FN3);
       }
       return false;
       break;

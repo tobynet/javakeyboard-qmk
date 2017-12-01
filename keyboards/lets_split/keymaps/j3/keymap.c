@@ -38,15 +38,13 @@ enum custom_keycodes {
 // WARNING: Use `_LOWER` in `LT` macro, not `LOWER`. if you make mistake, hungup your keyboards.
 #define KC_F_MU LT(_FN3, KC_MHEN)
 #define KC_F_HE LT(_FN3, KC_HENK)
-#define KC__S LT(_LOWER, KC_S)
-#define KC__D LT(_LOWER, KC_D)
-#define KC__F LT(_LOWER, KC_F)
-#define KC__J LT(_RAISE, KC_J)
-#define KC__K LT(_RAISE, KC_K)
-#define KC__L LT(_RAISE, KC_L)
-#define KC__LFT LT(_RAISE, KC_LEFT)
-#define KC__RGT LT(_RAISE, KC_RIGHT)
-#define KC__DWN LT(_RAISE, KC_DOWN)
+
+#define KC_LFT KC_LEFT
+#define KC_RGT KC_RIGHT
+#define KC_DWN KC_DOWN
+
+#define KC_L(x) LT(_LOWER, KC_ ## x)
+#define KC_R(x) LT(_RAISE, KC_ ## x)
 
 #define KC_X3 LT(_FN3, KC_ZKHK)
 #define KC_FN3 FN3
@@ -88,11 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.    ,----+----+----+----+----+----.
      TAB , Q  , W  , E  , R  , T  ,      Y  ,  U , I  , O  , P  ,MINS,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     LCTL, A  , _S , _D , _F , G  ,      H  , _J ,  K , L  ,SCLN,J_CLN,
+     LCTL, A  ,L(S),L(D),L(F), G  ,      H  ,R(J),  K , L  ,SCLN,J_CLN,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      LSFT, Z  , X  , C  , V  , B  ,      N  , M  ,COMM,DOT ,SLSH, RO ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-      Fn ,FN3 ,LGUI,LALT,F_MU,SPC ,     BSPC,ENT ,F_HE,_LFT,DOWN,RGHT
+      Fn ,FN3 ,LGUI,LALT,F_MU,SPC ,     BSPC,ENT ,F_HE,R(LFT),DWN,RGT
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 

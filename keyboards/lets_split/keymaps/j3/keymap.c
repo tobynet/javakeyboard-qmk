@@ -29,6 +29,7 @@ enum custom_keycodes {
   JAVA_PLUS_JA,
   JAVA_PLUS_YOU_JA,
   DOWNLOAD_TODAY_JA,
+  NOT_JA,
 };
 
 #define KC_ KC_TRNS
@@ -72,6 +73,7 @@ enum custom_keycodes {
 #define KC_JAPL JAVA_PLUS_JA      // Show "java+" as ja_JP with Japanese IME
 #define KC_JAPU JAVA_PLUS_YOU_JA  // Show "java+you" as ja_JP with Japanese IME
 #define KC_JADT DOWNLOAD_TODAY_JA // Show "downoad today" as ja_JP with Japanese IME
+#define KC_JANT NOT_JA            // Show "not" as ja_JP with Japanese IME
 
 #define KC_RST RESET
 
@@ -147,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      F11 , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,JAPL,JAVA,JADT,    ,         ,    ,    ,    ,PGUP,    ,
+         ,JANT,JAPL,JAVA,JADT,    ,         ,    ,    ,    ,PGUP,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      XXXX,VRSN,    ,JAPU,    ,    ,     RST ,    ,    ,HOME,PGDN,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
@@ -282,7 +284,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SS_TAP(X_ENTER) SS_TAP(X_ENTER)
           "do" SS_TAP(X_F7)
           SS_TAP(X_ENTER) SS_TAP(X_GRAVE));      }
+      return false;
+      break;
 
+    // NOT key(lang:ja)
+    case NOT_JA:
+      if (record->event.pressed) {
+        // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
+        SEND_STRING (SS_TAP(X_GRAVE)
+          "notto" SS_TAP(X_F7)
+          SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
+      }
       return false;
       break;
   }

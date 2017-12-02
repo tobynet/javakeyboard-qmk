@@ -4,6 +4,7 @@
 #include "eeconfig.h"
 #include "keymap_jp.h"
 
+
 extern keymap_config_t keymap_config;
 
 #define _QWERTY 0
@@ -24,6 +25,7 @@ enum custom_keycodes {
   // Custom macros
   SEMICOLON_ENTER,
   VERSION,
+  JAVA_JA,
 };
 
 #define KC_ KC_TRNS
@@ -63,6 +65,7 @@ enum custom_keycodes {
 
 #define KC_SENT SEMICOLON_ENTER   // ; -> Enter
 #define KC_VRSN VERSION           // Show firmware version
+#define KC_JAVA JAVA_JA           // Show java as ja_JP with Japanese IME
 
 #define KC_RST RESET
 
@@ -138,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      F11 , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,         ,    ,    ,    ,PGUP,    ,
+         ,    ,    ,JAVA ,    ,    ,         ,    ,    ,    ,PGUP,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      XXXX,    ,    ,    ,    ,    ,     RST ,VRSN,    ,HOME,PGDN,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
@@ -226,6 +229,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
       }
+      return false;
+      break;
+
+    // java key(lang:ja)
+    case JAVA_JA:
+      if (record->event.pressed) {
+        // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
+        SEND_STRING (SS_TAP(X_GRAVE) "jyaba" SS_TAP(X_F7) SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
+      }
+
       return false;
       break;
   }

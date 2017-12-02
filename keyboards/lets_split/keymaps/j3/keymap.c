@@ -26,6 +26,7 @@ enum custom_keycodes {
   SEMICOLON_ENTER,
   VERSION,
   JAVA_JA,
+  JAVA_PLUS_JA,
   JAVA_PLUS_YOU_JA,
   DOWNLOAD_TODAY_JA,
 };
@@ -68,6 +69,7 @@ enum custom_keycodes {
 #define KC_SENT SEMICOLON_ENTER   // ; -> Enter
 #define KC_VRSN VERSION           // Show firmware version
 #define KC_JAVA JAVA_JA           // Show java as ja_JP with Japanese IME
+#define KC_JAPL JAVA_PLUS_JA      // Show "java+" as ja_JP with Japanese IME
 #define KC_JAPU JAVA_PLUS_YOU_JA  // Show "java+you" as ja_JP with Japanese IME
 #define KC_JADT DOWNLOAD_TODAY_JA // Show "downoad today" as ja_JP with Japanese IME
 
@@ -145,9 +147,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      F11 , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,    ,    ,JAVA,JAPU,JADT,         ,    ,    ,    ,PGUP,    ,
+         ,    ,JAPL,JAVA,JADT,    ,         ,    ,    ,    ,PGUP,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     XXXX,VRSN,    ,    ,    ,    ,     RST ,    ,    ,HOME,PGDN,END
+     XXXX,VRSN,    ,JAPU,    ,    ,     RST ,    ,    ,HOME,PGDN,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -243,6 +245,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING (SS_TAP(X_GRAVE) "jyaba" SS_TAP(X_F7) SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
       }
 
+      return false;
+      break;
+
+    // java+ key(lang:ja)
+    case JAVA_PLUS_JA:
+      if (record->event.pressed) {
+        // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
+        SEND_STRING (SS_TAP(X_GRAVE)
+          "anatato" SS_TAP(X_F6)
+          SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
+      }
       return false;
       break;
 

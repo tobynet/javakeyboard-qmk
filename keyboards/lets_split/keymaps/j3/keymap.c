@@ -246,7 +246,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE) "jyaba" SS_TAP(X_F7) SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
       }
-
       return false;
       break;
 
@@ -270,7 +269,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           "jyaba," SS_TAP(X_F7)
           SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
       }
-
       return false;
       break;
 
@@ -283,7 +281,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           "daunro-" SS_TAP(X_F7)
           SS_TAP(X_ENTER) SS_TAP(X_ENTER)
           "do" SS_TAP(X_F7)
-          SS_TAP(X_ENTER) SS_TAP(X_GRAVE));      }
+          SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
+      }
       return false;
       break;
 

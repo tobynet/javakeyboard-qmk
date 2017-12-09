@@ -245,6 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // java key(lang:ja)
     case JAVA_JA:
       if (record->event.pressed) {
+        // Input "ジャバ"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE) "jyaba" SS_TAP(X_F7) SS_TAP(X_ENTER) SS_TAP(X_GRAVE));
       }
@@ -254,6 +255,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // java+ key(lang:ja)
     case JAVA_PLUS_JA:
       if (record->event.pressed) {
+        // Input "あなたと"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE)
           "anatato" SS_TAP(X_F6)
@@ -265,6 +267,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // java+you key(lang:ja)
     case JAVA_PLUS_YOU_JA:
       if (record->event.pressed) {
+        // Input "あなたとジャバ、"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE)
           "anatato" SS_TAP(X_F6)
@@ -277,6 +280,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // download today key(lang:ja)
     case DOWNLOAD_TODAY_JA:
       if (record->event.pressed) {
+        // Input "今すぐダウンロー\nド"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE)
           "imasugu "
@@ -291,6 +295,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // NOT key(lang:ja)
     case NOT_JA:
       if (record->event.pressed) {
+        // Input "今すぐダウンロー\nド"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE)
           "notto" SS_TAP(X_F7)

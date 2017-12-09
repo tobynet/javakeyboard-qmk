@@ -30,6 +30,7 @@ enum custom_keycodes {
   JAVA_PLUS_YOU_JA,
   DOWNLOAD_TODAY_JA,
   NOT_JA,
+  DOWNLOAD_JAVA_BUTTON,
 };
 
 #define KC_ KC_TRNS
@@ -74,6 +75,7 @@ enum custom_keycodes {
 #define KC_JAPU JAVA_PLUS_YOU_JA  // Show "java+you" as ja_JP with Japanese IME
 #define KC_JADT DOWNLOAD_TODAY_JA // Show "downoad today" as ja_JP with Japanese IME
 #define KC_JANT NOT_JA            // Show "not" as ja_JP with Japanese IME
+#define KC_DLJA DOWNLOAD_JAVA_BUTTON  // The secret
 
 #define KC_RST RESET
 
@@ -149,9 +151,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
      F11 , W1 , W2 , W3 , W4 , W5 ,      W6 , W7 , W8,  W9 , W0 ,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-         ,JANT,JAPL,JAVA,JADT,    ,         ,    ,    ,    ,PGUP,    ,
+         ,JANT,JAPL,JAVA,JADT,JAPU,         ,    ,    ,    ,PGUP,    ,
   //|----+----+----+----+----+----|    |----+----+----+----+----+----|
-     XXXX,VRSN,    ,JAPU,    ,    ,     RST ,    ,    ,HOME,PGDN,END
+     XXXX,DLJA,VRSN,    ,    ,    ,     RST ,    ,    ,HOME,PGDN,END
   //`----+----+----+----+----+----'    `----+----+----+----+----+----'
   ),
 
@@ -296,6 +298,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
+    // DOWNLOAD Java Button
+    // **CAUTION** : This function causes downloading real JAVA RUNTIME in 2017 Dec.
+    // JIS keyboard layout only.
+    case DOWNLOAD_JAVA_BUTTON:
+      if (record->event.pressed) {
+
+        // Win+R -> "{java url}"
+        SEND_STRING (SS_LGUI("r"));
+        wait_ms(200);
+
+        // "'" means ":" in JIS Keyboard...
+        SEND_STRING (SS_TAP(X_BSPACE) "https'//java.com/"
+          SS_TAP(X_ENTER));
+
+        wait_ms(3000);
+
+        // In top page
+        // Tab * n -> Enter (goto Download page)
+        SEND_STRING (
+          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+          SS_TAP(X_ENTER));
+
+        wait_ms(3000);
+
+        // In download page
+        // Tab * n -> Enter (goto Download page)
+        SEND_STRING (
+          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+          SS_TAP(X_ENTER));
+
+        // DONE!
+      }
+      return false;
+      break;
+
   }
   return true;
 }

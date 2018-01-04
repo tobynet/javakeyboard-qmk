@@ -295,7 +295,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // NOT key(lang:ja)
     case NOT_JA:
       if (record->event.pressed) {
-        // Input "今すぐダウンロー\nド"
+        // Input "ノット"
         // X_GRAVE is an alternative code of X_ZKHK(Zenkaku/Hankaku)
         SEND_STRING (SS_TAP(X_GRAVE)
           "notto" SS_TAP(X_F7)

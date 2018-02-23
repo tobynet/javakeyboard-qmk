@@ -3,6 +3,10 @@
 #include "eeconfig.h"
 #include "keymap_jp.h"
 
+#ifdef AUDIO_ENABLE
+  #include "audio.h"
+#endif
+
 extern keymap_config_t keymap_config;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -29,6 +33,9 @@ enum custom_keycodes {
   DOWNLOAD_TODAY_JA,
   NOT_JA,
   DOWNLOAD_JAVA_BUTTON,
+
+  // Songs
+  SONG1, SONG2, SONG3, SONG4, SONG5, SONG6, SONG7, SONG8, SONG9, SONG0,
 };
 
 // Fillers to make layering more clear
@@ -117,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Sandbox layer
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |SONG 1|SONG 2|SONG 3|SONG 4|SONG 5|SONG 6|SONG 7|SONG 8|SONG 9|SONG 0|      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -129,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_FN3] = KEYMAP( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, SONG1,   SONG2,   SONG3,   SONG4,   SONG5,   SONG6,   SONG7,   SONG8,   SONG9,   SONG0, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, \
@@ -160,6 +167,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+#ifdef AUDIO_ENABLE
+#define FAST_ONE_UP_SOUND \
+    E__NOTE(_E6), \
+    E__NOTE(_G6), \
+    E__NOTE(_E7), \
+    E__NOTE(_C7), \
+    E__NOTE(_D7), \
+    E__NOTE(_G7),
+
+#define TREASURE_SOUND \
+    H__NOTE(_A4), \
+    H__NOTE(_AS4), \
+    H__NOTE(_B4), \
+    WD_NOTE(_C5),
+
+// How to make array initialization??
+float tone_song1[][2] = SONG(COIN_SOUND);
+float tone_song2[][2] = SONG(FAST_ONE_UP_SOUND);
+float tone_song3[][2] = SONG(ZELDA_PUZZLE);
+float tone_song4[][2] = SONG(TREASURE_SOUND);
+#endif
+
+
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
@@ -184,6 +214,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
+
+    // Play songs
+    case SONG1:
+      if (record->event.pressed) PLAY_SONG(tone_song1);
+      return false;
+    case SONG2:
+      if (record->event.pressed) PLAY_SONG(tone_song2);
+      return false;
+    case SONG3:
+      if (record->event.pressed) PLAY_SONG(tone_song3);
+      return false;
+    case SONG4:
+      if (record->event.pressed) PLAY_SONG(tone_song4);
+      return false;
 
 
     // java key(lang:ja)

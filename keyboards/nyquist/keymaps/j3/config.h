@@ -38,4 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
 
+/* Audio settings */
+#ifdef AUDIO_ENABLE
+  #define C6_AUDIO // Define this to enable the buzzer
+#endif
+
 #endif

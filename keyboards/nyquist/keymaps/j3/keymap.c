@@ -182,11 +182,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     H__NOTE(_B4), \
     WD_NOTE(_C5),
 
+#define DOORCHIME_SOUND \
+    H__NOTE(_FS5), \
+    H__NOTE(_D5), \
+    H__NOTE(_A4), \
+    H__NOTE(_D5), \
+    \
+    H__NOTE(_E5), \
+    W__NOTE(_A5), \
+    H__NOTE(_REST), \
+    \
+    H__NOTE(_E5), \
+    H__NOTE(_FS5), \
+    H__NOTE(_E5), \
+    H__NOTE(_A4), \
+    M__NOTE(_D5, 128),
+
+
 // How to make array initialization??
 float tone_song1[][2] = SONG(COIN_SOUND);
 float tone_song2[][2] = SONG(FAST_ONE_UP_SOUND);
 float tone_song3[][2] = SONG(ZELDA_PUZZLE);
 float tone_song4[][2] = SONG(TREASURE_SOUND);
+float tone_song5[][2] = SONG(DOORCHIME_SOUND);
 #endif
 
 
@@ -228,6 +246,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case SONG4:
       if (record->event.pressed) PLAY_SONG(tone_song4);
+      return false;
+    case SONG5:
+      if (record->event.pressed) PLAY_SONG(tone_song5);
       return false;
 
 

@@ -34,6 +34,9 @@ enum custom_keycodes {
   NOT_JA,
   DOWNLOAD_JAVA_BUTTON,
 
+  // Useful macros
+  ENGLISH_DICTIONARY,
+
   // Songs
   SONG1, SONG2, SONG3, SONG4, SONG5, SONG6, SONG7, SONG8, SONG9, SONG0,
 };
@@ -55,6 +58,8 @@ enum custom_keycodes {
 #define KC_JADT DOWNLOAD_TODAY_JA // Show "downoad today" as ja_JP with Japanese IME
 #define KC_JANT NOT_JA            // Show "not" as ja_JP with Japanese IME
 #define KC_DLJA DOWNLOAD_JAVA_BUTTON  // The secret
+
+#define ENG_DIC ENGLISH_DICTIONARY
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -147,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F12 |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  DEL |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  F11 |      |      |      |      |      |      |      |      |      |      |      |
+ * |  F11 |      |      |ENG_DIC|      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -158,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FN] = KEYMAP( \
   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
-  KC_F11,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  KC_F11,  _______, _______, ENG_DIC, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, KC_JANT, KC_JAPL, KC_JAVA, KC_JADT, KC_JAPU, _______, _______, _______, _______, KC_PGUP, _______, \
   _______, KC_DLJA, _______, _______, _______, _______, RESET,   _______, _______, KC_HOME, KC_PGDN, KC_END \
@@ -347,6 +352,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SS_TAP(X_ENTER));
 
         // DONE!
+      }
+      return false;
+      break;
+
+
+    // Use English Dictionary on browser
+    //
+    // Prerequisites:
+    //
+    // * Browser
+    //   * Chrome web browser must be pinned 1st app on taskbar in Windows 8, 10 or lator.
+    //   * The dictionary must be defined as alternative search engine on Chrome.
+    //   * Search engine keyword must be `e`.
+    // * Your words must be copied into clipboard.
+    // * Shortcut for pasting from clipboard must be assigned `Ctrl + V`.
+    case ENGLISH_DICTIONARY:
+      if (record->event.pressed) {
+        // Switch 1st app(Chrome)
+        // Memo: hack for press "Win + 1".
+        SEND_STRING(SS_DOWN(X_LGUI));
+        SEND_STRING(SS_DOWN(X_1));
+        wait_ms(50);
+        SEND_STRING(SS_UP(X_1));
+        SEND_STRING(SS_UP(X_LGUI));
+        wait_ms(100);
+
+        // Select addressbar
+        SEND_STRING(SS_LCTRL("l"));
+
+        // Input search engine keyword
+        SEND_STRING("e" SS_TAP(X_TAB));
+
+        // Paste words from clipboard
+        SEND_STRING(SS_LCTRL("v"));
+
+        // Search as new tab
+        SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_ENTER) SS_UP(X_LALT));
       }
       return false;
       break;

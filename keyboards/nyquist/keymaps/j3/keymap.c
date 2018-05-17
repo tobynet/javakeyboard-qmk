@@ -369,13 +369,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // * Shortcut for pasting from clipboard must be assigned `Ctrl + V`.
     case ENGLISH_DICTIONARY:
       if (record->event.pressed) {
-        // Switch 1st app(Chrome)
-        // Memo: hack for press "Win + 1".
+        // Open new window of 1st app on taskbar(Chrome)
+        // Memo: hack for press "Shift + Win + 1".
+        SEND_STRING(SS_DOWN(X_LSHIFT));
         SEND_STRING(SS_DOWN(X_LGUI));
         SEND_STRING(SS_DOWN(X_1));
         wait_ms(50);
         SEND_STRING(SS_UP(X_1));
         SEND_STRING(SS_UP(X_LGUI));
+        SEND_STRING(SS_UP(X_LSHIFT));
         wait_ms(100);
 
         // Select addressbar
@@ -390,8 +392,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Paste words from clipboard
         SEND_STRING(SS_LCTRL("v"));
 
-        // Search as new tab
-        SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_ENTER) SS_UP(X_LALT));
+        // Search as current tab
+        SEND_STRING(SS_TAP(X_ENTER));
       }
       return false;
       break;

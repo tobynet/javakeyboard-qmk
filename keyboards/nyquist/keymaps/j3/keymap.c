@@ -382,7 +382,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LCTRL("l"));
 
         // Input search engine keyword
-        SEND_STRING("e" SS_TAP(X_TAB));
+        SEND_STRING("e");
+        wait_ms(50);
+        SEND_STRING(SS_TAP(X_TAB));
+        wait_ms(50);
 
         // Paste words from clipboard
         SEND_STRING(SS_LCTRL("v"));

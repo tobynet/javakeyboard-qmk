@@ -367,8 +367,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //   * Search engine keyword must be `e`.
     // * Your words must be copied into clipboard.
     // * Shortcut for pasting from clipboard must be assigned `Ctrl + V`.
+    // * Configuration:
+    //   * Press Muhenkan(無変換) key to off Japanese IME.
     case ENGLISH_DICTIONARY:
       if (record->event.pressed) {
+        // IME off
+        SEND_STRING(SS_TAP(X_INT5));
+        wait_ms(50);
+
         // Open new window of 1st app on taskbar(Chrome)
         // Memo: hack for press "Shift + Win + 1".
         SEND_STRING(SS_DOWN(X_LSHIFT));

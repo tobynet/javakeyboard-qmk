@@ -384,7 +384,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_UP(X_1));
         SEND_STRING(SS_UP(X_LGUI));
         SEND_STRING(SS_UP(X_LSHIFT));
-        wait_ms(100);
+        wait_ms(500);
 
         // Select addressbar
         SEND_STRING(SS_LCTRL("l"));

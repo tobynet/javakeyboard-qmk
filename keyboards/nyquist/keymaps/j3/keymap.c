@@ -3,9 +3,7 @@
 #include "eeconfig.h"
 #include "keymap_jp.h"
 
-#ifdef AUDIO_ENABLE
-  #include "audio.h"
-#endif
+// #define MACRO_ENGLISH_DICTIONARY
 
 extern keymap_config_t keymap_config;
 
@@ -238,7 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-
+#ifdef AUDIO_ENABLE
     // Play songs
     case SONG1:
       if (record->event.pressed) PLAY_SONG(tone_song1);
@@ -255,7 +253,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case SONG5:
       if (record->event.pressed) PLAY_SONG(tone_song5);
       return false;
-
+#endif
 
     // java key(lang:ja)
     case JAVA_JA:
@@ -356,7 +354,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-
+#ifdef MACRO_ENGLISH_DICTIONARY
     // Use English Dictionary on browser
     //
     // Prerequisites:
@@ -403,6 +401,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+#endif
   }
 
   return true;

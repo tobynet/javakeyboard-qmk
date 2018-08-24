@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      | LEFT | DOWN |  UP  |RIGHT |      |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |PG UP |   _  |
+ * |      |      |      |      |      |      |      | LEFT | DOWN |RIGHT |PG UP |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      | HOME |PG DOWN| END |
  * `-----------------------------------------------------------------------------------'
@@ -126,8 +126,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT( \
   _______, JP_EXLM, JP_DQT,  JP_HASH, JP_DLR , JP_PERC, JP_AMPR, JP_QUOT, JP_LPRN, JP_RPRN, JP_CIRC, JP_YEN, \
   KC_ESC,  JP_EXLM, JP_DQT,  JP_HASH, JP_DLR , JP_PERC, JP_AMPR, JP_QUOT, JP_LPRN, JP_RPRN, JP_CIRC, JP_YEN, \
-  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______, JP_QUOT, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, JP_UNDS, \
+  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, JP_QUOT, \
+  _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGUP, JP_UNDS, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END  \
 ),
 

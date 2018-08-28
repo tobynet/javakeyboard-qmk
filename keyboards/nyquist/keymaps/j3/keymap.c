@@ -13,14 +13,16 @@ extern keymap_config_t keymap_config;
 // entirely and just use numbers.
 #define _QWERTY 0
 #define _EUCALYN 1
-#define _LOWER 2
-#define _RAISE 3
-#define _FN3 4
-#define _FN 5
+#define _GAMING 2
+#define _LOWER 3
+#define _RAISE 4
+#define _FN3 5
+#define _FN 6
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   EUCALYN,
+  GAMING,
   LOWER,
   RAISE,
   FN3,
@@ -110,6 +112,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 
+/* Qwerty based for gaming
+ * ,-----------------------------------------------------------------------------------.
+ * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | -or= |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | @or` |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Ctrl |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  | ;or+ | 'or" |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Fn   | FN3  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_GAMING] = LAYOUT( \
+  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, \
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT, \
+  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, JP_COLN, \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_SLSH, \
+  FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+),
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |      |  !   |   "  |   #  |   $  |   %  |   &  |   '  |   (  |   )  | ^or~ | \or| |
@@ -181,7 +204,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |  F11 |      |      |ENG_DIC|      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |QWERTY|EUCALYN|      |      |      |
+ * |      |      |      |      |      |      |      |QWERTY|EUCALYN|GAMING|      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |PG UP |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -191,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FN] = LAYOUT( \
   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
   KC_F11,  _______, _______, ENG_DIC, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, QWERTY,  EUCALYN, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, QWERTY,  EUCALYN, GAMING,  _______, _______, \
   _______, KC_JANT, KC_JAPL, KC_JAVA, KC_JADT, KC_JAPU, _______, _______, _______, _______, KC_PGUP, _______, \
   _______, KC_DLJA, _______, _______, _______, _______, RESET,   _______, _______, KC_HOME, KC_PGDN, KC_END \
 )
@@ -239,6 +262,7 @@ float tone_song4[][2] = SONG(TREASURE_SOUND);
 float tone_song5[][2] = SONG(DOORCHIME_SOUND);
 float tone_qwerty[][2] = SONG(QWERTY_SOUND);
 float tone_eucalyn[][2]  = SONG(COLEMAK_SOUND);
+float tone_gaming[][2] = SONG(DVORAK_SOUND);
 #endif
 
 
@@ -265,6 +289,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           PLAY_SONG(tone_eucalyn);
         #endif
         persistent_default_layer_set(1UL<<_EUCALYN);
+      }
+      return false;
+      break;
+
+    case GAMING:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          PLAY_SONG(tone_gaming);
+        #endif
+        persistent_default_layer_set(1UL<<_GAMING);
       }
       return false;
       break;

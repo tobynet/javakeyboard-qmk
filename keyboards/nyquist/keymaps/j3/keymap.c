@@ -14,15 +14,17 @@ extern keymap_config_t keymap_config;
 #define _QWERTY 0
 #define _EUCALYN 1
 #define _GAMING 2
-#define _LOWER 3
-#define _RAISE 4
-#define _FN3 5
-#define _FN 6
+#define _GAMING_FN 3
+#define _LOWER 4
+#define _RAISE 5
+#define _FN3 6
+#define _FN 7
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   EUCALYN,
   GAMING,
+  GAMING_FN,
   LOWER,
   RAISE,
   FN3,
@@ -51,6 +53,9 @@ enum custom_keycodes {
 // Lower or Raise modifier
 #define _L(x) LT(_LOWER, x)
 #define _R(x) LT(_RAISE, x)
+
+// Modifiers for One hand
+#define _G(x) LT(_GAMING_FN, x)
 
 // Mod Tap ref. https://docs.qmk.fm/#/feature_advanced_keycodes?id=mod-tap
 #define CTL_SPC CTL_T(KC_SPACE)
@@ -122,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
+ * | Fn   | FN3  | GUI  | Alt  |G(Muhen)|Space | Bksp |Enter |Henkan| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMING] = LAYOUT( \
@@ -130,7 +135,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT, \
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, JP_COLN, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_SLSH, \
-  FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+  FN,      FN3,     KC_LGUI, KC_LALT,_G(KC_MHEN),KC_SPC,KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+),
+
+/* Qwerty based layer for gaming(The layout of right hand in left hand)
+ * ,-----------------------------------------------------------------------------------.
+ * | Esc  |   6  |   7  |   8  |   9  |   0  |      |      \      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   Y  |   U  |   I  |   O  |   P  |      |      \      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Ctrl |   H  |   J  |   K  |   L  | ENTER|      |      \      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   N  |   M  | ,or< | .or> | DEL  |      |      \      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Fn   | FN3  | GUI  | Alt  |Muhen | BSPC |      |      \      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_GAMING_FN] = LAYOUT( \
+  _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, _______,  _______, _______, _______, _______, \
+  _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______, _______,  _______, _______, _______, _______, \
+  _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_ENT,  _______, _______,  _______, _______, _______, _______, \
+  _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_DEL,  _______, _______,  _______, _______, _______, _______,\
+  _______, _______, _______, _______, _______, KC_BSPC,  _______, _______,  _______, _______, _______, _______ \
 ),
 
 /* Lower

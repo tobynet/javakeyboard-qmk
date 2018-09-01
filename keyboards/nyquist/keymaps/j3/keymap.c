@@ -94,26 +94,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 
-/* Eucalyn
+/* Eucalyn 2018-03
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | -or= |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  | /or? | ,or< | .or> |   F  |   Q  |   M  |   R  |   D  |   Y  |   P  | @or` |
+ * | Tab  |   Q  |   W  | ,or< | .or> | ;or+ |   M  |   R  |   D  |   Y  |   P  | @or` |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Ctrl |   A  |   O  |   E  |I Low |   U  |   G  |T Rais|   K  |   S  |   N  | 'or" |
+ * | Ctrl |   A  |   O  |   E  |I Low |   U  |   G  |T Rais|   K  |   S  |   N  | :or* |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   W  |   B  |   H  |   J  |   L  |  UP  | ;or+ |
+ * | Shift|   Z  |   X  |   C  |   V  |   F  |   B  |   H  |   J  |   L  |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Fn   | FN3  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
- * ref. http://eucalyn.hatenadiary.jp/entry/saikyo-interface
- * ref. https://yushakobo.jp/blog/pluis9/2017/12/thinkkeylayout/
+ * ref. http://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout
  */
 [_EUCALYN] = LAYOUT( \
   KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, \
-  KC_TAB,  KC_SLSH, KC_COMM, KC_DOT,  KC_F,    KC_Q,    KC_M,    KC_R,    KC_D,    KC_Y,    KC_P,    JP_AT, \
+  KC_TAB,  KC_Q,    KC_W,    KC_COMM, KC_DOT,  KC_SCLN, KC_M,    KC_R,    KC_D,    KC_Y,    KC_P,    JP_AT, \
   KC_LCTL, KC_A,    KC_O,    KC_E,    _L(KC_I),KC_U,    KC_G,    _R(KC_T),KC_K,    KC_S,    KC_N,    JP_COLN, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_W,    KC_B,    KC_H,    KC_J,    KC_L,    KC_UP,   KC_SCLN,\
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_F,    KC_B,    KC_H,    KC_J,    KC_L,    KC_UP,   KC_SLSH, \
   FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 

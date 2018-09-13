@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |G(Muhen)|Space | Bksp |Enter |Henkan| Left | Down |Right |
+ * | Fn   | FN3  | GUI  | Alt  |G(Enter)|Space| Bksp |Enter |Kanzi| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMING] = LAYOUT( \

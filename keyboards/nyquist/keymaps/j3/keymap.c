@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
+ * | Fn3  |  FN  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT( \
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT, \
   KC_LCTL, KC_A,    KC_S,    KC_D,    _L(KC_F),KC_G,    KC_H,    _R(KC_J), KC_K,   KC_L,    KC_SCLN, JP_COLN, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_SLSH, \
-  FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+  FN3,     FN,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 
 /* Eucalyn 2018-03
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   F  |   B  |   H  |   J  |   L  |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
+ * | Fn3  |  FN  | GUI  | Alt  |Muhen |Space | Bksp |Enter |Henkan| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  * ref. http://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout
  */
@@ -113,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_COMM, KC_DOT,  KC_SCLN, KC_M,    KC_R,    KC_D,    KC_Y,    KC_P,    JP_AT, \
   KC_LCTL, KC_A,    KC_O,    KC_E,    _L(KC_I),KC_U,    KC_G,    _R(KC_T),KC_K,    KC_S,    KC_N,    JP_COLN, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_F,    KC_B,    KC_H,    KC_J,    KC_L,    KC_UP,   KC_SLSH, \
-  FN,      FN3,     KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+  FN3,     FN,      KC_LGUI, KC_LALT, KC_MHEN, KC_SPC,  KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 
 /* Qwerty based for gaming
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |G(Enter)|Space| Bksp |Enter |Kanzi| Left | Down |Right |
+ * | Fn3  |  FN  | GUI  | Alt  |G(Enter)|Space| Bksp |Enter |Kanzi| Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMING] = LAYOUT( \
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT, \
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, JP_COLN, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_SLSH, \
-  FN,      FN3,     KC_LGUI, KC_LALT,_G(KC_ENT),KC_SPC, KC_BSPC, KC_ENT,  JP_ZHTG, KC_LEFT, KC_DOWN, KC_RGHT \
+  FN3,     FN,      KC_LGUI, KC_LALT,_G(KC_ENT),KC_SPC, KC_BSPC, KC_ENT,  JP_ZHTG, KC_LEFT, KC_DOWN, KC_RGHT \
 ),
 
 /* Qwerty based layer for gaming(The layout of right hand in left hand)
@@ -147,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   N  |   M  | ,or< | .or> | DEL  |      |      \      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn   | FN3  | GUI  | Alt  |Muhen | BSPC |      |      \      |      |      |      |
+ * | Fn3  |  FN  | GUI  | Alt  |Muhen | BSPC |      |      \      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMING_FN] = LAYOUT( \
@@ -202,11 +202,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Sandbox layer
  * ,-----------------------------------------------------------------------------------.
- * |      |SONG 1|SONG 2|SONG 3|SONG 4|SONG 5|SONG 6|SONG 7|SONG 8|SONG 9|SONG 0|LED TST|
+ * | F12  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  DEL |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |LED HSV|
+ * | F11  |SONG 1|SONG 2|SONG 3|SONG 4|SONG 5|SONG 6|SONG 7|SONG 8|SONG 9|SONG 0|LED HSV|
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |LED TST|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | LED  | LED  | LED  |      |      |      |      |      | LED  | LED  | LED  |
  * |      |Slide |Swing |blink |      |      |      |      |      | Sat- |Brght+| Sat+ |
@@ -216,9 +216,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_FN3] = LAYOUT( \
-  _______, SONG1,   SONG2,   SONG3,   SONG4,   SONG5,   SONG6,   SONG7,   SONG8,   SONG9,   SONG0,   RGB_M_T, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_M_G, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
+  KC_F11 , SONG1,   SONG2,   SONG3,   SONG4,   SONG5,   SONG6,   SONG7,   SONG8,   SONG9,   SONG0,   RGB_M_G, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_M_T, \
   _______,RGB_M_SN, RGB_M_K, RGB_M_B, _______, _______, _______, _______, _______, RGB_SAD, RGB_VAI, RGB_SAI, \
   _______, _______, _______, _______, _______, RGB_TOG, _______, _______, _______, RGB_HUD, RGB_VAD, RGB_HUI \
 ),
@@ -227,9 +227,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F12 |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  DEL |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  F11 |      |      |ENG_DIC|      |      |      |      |      |      |      |      |
+ * |  F11 |      |      |ENG_DIC|      |      |      |      |      |      |     |RESET |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |QWERTY|EUCALYN|GAMING|      |      |
+ * |      |      |      |      |      |      |      |QWERTY|EUCALYN|GAMING|     |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |PG UP |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -238,10 +238,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_FN] = LAYOUT( \
   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
-  KC_F11,  _______, _______, ENG_DIC, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, QWERTY,  EUCALYN, GAMING,  _______, _______, \
+  KC_F11,  _______, _______, ENG_DIC, _______, _______, _______, _______, _______, _______, _______, RESET , \
+  _______, _______, _______, _______, _______, _______, _______, QWERTY,  EUCALYN, GAMING,  _______, KC_DLJA, \
   _______, KC_JANT, KC_JAPL, KC_JAVA, KC_JADT, KC_JAPU, _______, _______, _______, _______, KC_PGUP, _______, \
-  _______, KC_DLJA, _______, _______, _______, _______, RESET,   _______, _______, KC_HOME, KC_PGDN, KC_END \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END \
 )
 
 };

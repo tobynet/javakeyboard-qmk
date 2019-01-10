@@ -456,7 +456,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // Tab * n -> Enter (goto Download page)
         SEND_STRING (
           SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
-          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+          SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
           SS_TAP(X_ENTER));
 
         // DONE!

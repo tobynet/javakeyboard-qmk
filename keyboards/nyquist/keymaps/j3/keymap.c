@@ -15,16 +15,18 @@ extern keymap_config_t keymap_config;
 #define _NUMPAD 1
 #define _GAMING 2
 #define _GAMING_FN 3
-#define _LOWER 4
-#define _RAISE 5
-#define _FN3 6
-#define _FN 7
+#define _GAMING2 4
+#define _LOWER 5
+#define _RAISE 6
+#define _FN3 7
+#define _FN 8
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   NUMPAD,
   GAMING,
   GAMING_FN,
+  GAMING2,
   LOWER,
   RAISE,
   FN3,
@@ -160,6 +162,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, KC_BSPC,  _______, _______,  _______, _______, _______, _______ \
 ),
 
+/* Qwerty based layer for gaming No.2(Muhen key is no longer modifier)
+ * ,-----------------------------------------------------------------------------------.
+ * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | -or= |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | @or` |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Ctrl |   A  |  S   |   D  |   F  |   G  |   H  |J Rais|   K  |   L  |  ;+  | 'or" |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  | ,or< | .or> |  UP  | /or? |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Fn3  |  FN  | GUI  | Alt  |Muhen|Space|Bksp |Enter |Henkan| Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_GAMING2] = LAYOUT( \
+  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, \
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JP_AT, \
+  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    _R(KC_J), KC_K,   KC_L,    KC_SCLN, JP_COLN, \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   KC_SLSH, \
+  FN3,     FN,     KC_LGUI, KC_LALT, KC_MHEN,KC_SPC, KC_BSPC, KC_ENT,  KC_HENK, KC_LEFT, KC_DOWN, KC_RGHT \
+),
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |  F12 |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |      |
@@ -231,7 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |  F11 |      |      |ENG_DIC|      |      |      |      |      |      |     |RESET |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |QWERTY|GAMING|     |     |      |
+ * |      |      |      |      |      |      |      |QWERTY|GAMING|GAMING2|     |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |PG UP |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -241,7 +264,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FN] = LAYOUT( \
   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
   KC_F11,  _______, _______, ENG_DIC, _______, _______, _______, _______, _______, _______, _______, RESET , \
-  _______, _______, _______, _______, _______, _______, _______, QWERTY,  GAMING,  _______, _______, KC_DLJA, \
+  _______, _______, _______, _______, _______, _______, _______, QWERTY,  GAMING,  GAMING2, _______, KC_DLJA, \
   _______, KC_JANT, KC_JAPL, KC_JAVA, KC_JADT, KC_JAPU, _______, _______, _______, _______, KC_PGUP, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END \
 )
@@ -288,7 +311,8 @@ float tone_song3[][2] = SONG(ZELDA_PUZZLE);
 float tone_song4[][2] = SONG(TREASURE_SOUND);
 float tone_song5[][2] = SONG(DOORCHIME_SOUND);
 float tone_qwerty[][2] = SONG(QWERTY_SOUND);
-float tone_gaming[][2] = SONG(DVORAK_SOUND);
+float tone_gaming[][2] = SONG(COLEMAK_SOUND);
+float tone_gaming2[][2] = SONG(DVORAK_SOUND);
 #endif
 
 
@@ -315,6 +339,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           PLAY_SONG(tone_gaming);
         #endif
         persistent_default_layer_set(1UL<<_GAMING);
+      }
+      return false;
+      break;
+
+    case GAMING2:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          PLAY_SONG(tone_gaming2);
+        #endif
+        persistent_default_layer_set(1UL<<_GAMING2);
       }
       return false;
       break;
